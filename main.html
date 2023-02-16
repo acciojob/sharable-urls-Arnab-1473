@@ -1,7 +1,40 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>URL GENERATOR</title>
+  </head>
   <body>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br>
+  
+      <label for="year">Year:</label>
+      <input type="number" id="year" name="year"><br>
+  
+      <button type="button" id="button">Generate URL</button>
+    </form>
+
+    <h3 id="url">https://localhost:8080/</h3>
+   
     <script type="text/javascript" src="./script.js">
+      const nameInput = document.getElementById('name');
+      const yearInput = document.getElementById('year');
+      const urlText = document.getElementById('url');
+
+      document.getElementById('button').addEventListener('click', () =>{
+        const name = nameInput.value.trim();
+        const year = yearInput.value.trim();
+
+        let url = "https://localhost:8080/";
+
+        if(name !== ''){
+          url += `?name=${encodeURIComponent(name)}`;
+        }
+        if(year !== ''){
+          url += `${name === '' ? '?' : '&'}year=${encodeURIComponent(year)}`
+        }
+        urlText.textContent = url;
+      });
 </script>
   </body>
 
